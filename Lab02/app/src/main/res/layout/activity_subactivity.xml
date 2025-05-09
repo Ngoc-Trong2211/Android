@@ -6,24 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Subactivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Demo Cycle Life"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:text="chao lop"
         android:textColor="#8BC34A"
-        android:textSize="30sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btncall"
+        android:id="@+id/btnok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Call Dialog"
-        android:textSize="24sp" />
-
+        android:text="Button"
+        android:textSize="18sp"
+        tools:text="ok" />
 </LinearLayout>
