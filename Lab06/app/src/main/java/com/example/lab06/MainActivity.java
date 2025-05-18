@@ -8,9 +8,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -34,6 +38,31 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                AlertDialog.Builder dialogBack = new AlertDialog.Builder(MainActivity.this);
+                dialogBack.setTitle("Question");
+                dialogBack.setMessage("Are you sure you want to exit");
+                dialogBack.setCancelable(false);
+                dialogBack.setIcon(R.drawable.img);
+                dialogBack.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                dialogBack.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                         dialog.cancel();
+                    }
+                });
+                dialogBack.create().show();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(MainActivity.this, callback);
 
         editFullName = findViewById(R.id.editFullName);
         editId = findViewById(R.id.editId);
@@ -74,21 +103,27 @@ public class MainActivity extends AppCompatActivity {
                 if (cbReadCoding.isChecked()) hobby += cbReadCoding.getText().toString();
                 // Lay thong tin bo sung
                 String additional = editAddtional.getText().toString();
+                // Inflate layout
+                View dialogView = getLayoutInflater().inflate(R.layout.layout_dialog, null);
+                // Gán dữ liệu vào layout
+                TextView tvContent = dialogView.findViewById(R.id.tvContent);
+                Button btnClose = dialogView.findViewById(R.id.btnClose);
                 // in ra dialog
                 String personInf = fullName + "\n" + identification + "\n" + degree + "\n" + hobby + "\n" +
                         "-------------------------------------------\n" + "Thong tin bo sung:\n" +
                         additional + "\n-------------------------------------------";
+                tvContent.setText(personInf);
                 // Tao dialog
                 AlertDialog.Builder myDialog = new AlertDialog.Builder(MainActivity.this);
-                myDialog.setTitle("THONG TIN CA NHAN");
-                myDialog.setMessage(personInf);
-                myDialog.setPositiveButton("Dong", new DialogInterface.OnClickListener() {
+                myDialog.setView(dialogView);
+                AlertDialog dialog = myDialog.create();
+                btnClose.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    public void onClick(View v) {
+                        dialog.dismiss();
                     }
                 });
-                myDialog.create().show();
+                dialog.show();
             }
         });
     }
