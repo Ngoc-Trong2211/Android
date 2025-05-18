@@ -14,6 +14,7 @@ import android.window.OnBackInvokedDispatcher;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 AlertDialog.Builder dialogBack = new AlertDialog.Builder(MainActivity.this);
@@ -56,13 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 dialogBack.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                         dialog.cancel();
+                        dialog.cancel();
                     }
                 });
                 dialogBack.create().show();
             }
-        };
-        getOnBackPressedDispatcher().addCallback(MainActivity.this, callback);
+        });
 
         editFullName = findViewById(R.id.editFullName);
         editId = findViewById(R.id.editId);
