@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChildActivity">
+
+    <TextView
+        android:id="@+id/tvChildAc"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFEB3B"
+        android:gravity="center"
+        android:text="This is Child Activity"
+        android:textAlignment="center"
+        android:textColor="#4CAF50"
+        android:textSize="26dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="#D1D1D1"
+        android:text="Back to Main Activity"
+        android:textColor="#0B0B0B"
+        app:backgroundTint="@null" />
+</LinearLayout>
