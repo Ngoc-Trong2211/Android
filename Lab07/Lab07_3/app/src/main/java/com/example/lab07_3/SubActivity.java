@@ -20,6 +20,7 @@ public class SubActivity extends AppCompatActivity {
 
     EditText editGetA, editGetB;
     Button btnSum, btnSubtraction;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,22 +37,17 @@ public class SubActivity extends AppCompatActivity {
         btnSum = findViewById(R.id.btnSum);
         btnSubtraction = findViewById(R.id.btnSubtraction);
 
-        ActivityResultLauncher<Intent> launcher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(), result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null){
+        intent = getIntent();
+        double a = intent.getDoubleExtra("a", 0);
+        double b = intent.getDoubleExtra("b", 0);
+        editGetA.setText(a+"");
+        editGetB.setText(b+"");
 
-                    }
-                });
-
-        btnSubtraction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                double a = bundle.getDouble("a");
-                double b = bundle.getDouble("b");
-                editGetA.setText(a+"");
-                editGetB.setText(b+"");
-            }
-        });
+//        btnSubtraction.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 }

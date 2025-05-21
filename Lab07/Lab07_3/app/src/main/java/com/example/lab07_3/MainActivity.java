@@ -33,19 +33,19 @@ public class MainActivity extends AppCompatActivity {
         eidtResult = findViewById(R.id.editResult);
         btnRequest = findViewById(R.id.btnRequest);
 
-        double a = Double.parseDouble(editA.getText().toString());
-        double b = Double.parseDouble(editB.getText().toString());
-
-        Bundle bundle = new Bundle();
-        bundle.putDouble("a", a);
-        bundle.putDouble("b", b);
-
         btnRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SubActivity.class);
-                intent.putExtra("main", bundle);
-                startActivityForResult();
+                double a = Double.parseDouble(editA.getText().toString());
+                double b = Double.parseDouble(editB.getText().toString());
+
+                Bundle bundle = new Bundle();
+                bundle.putDouble("a", a);
+                bundle.putDouble("b", b);
+                intent.putExtra("a", a);
+                intent.putExtra("b", b);
+                startActivity(intent);
             }
         });
     }
