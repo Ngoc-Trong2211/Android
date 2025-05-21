@@ -43,11 +43,25 @@ public class SubActivity extends AppCompatActivity {
         editGetA.setText(a+"");
         editGetB.setText(b+"");
 
-//        btnSubtraction.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        btnSum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnResult(a+b);
+            }
+        });
+
+        btnSubtraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnResult(a-b);
+            }
+        });
+    }
+
+    private void returnResult(double result){
+        Intent intent = new Intent();
+        intent.putExtra("kq", result);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
