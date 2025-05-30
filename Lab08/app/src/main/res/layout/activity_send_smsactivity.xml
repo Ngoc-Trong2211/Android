@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SendSMSActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Input Phone Number"
+        android:textAlignment="center"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editInputSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:ems="10"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/imgSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#4CAF50"
+            app:srcCompat="@android:drawable/stat_notify_chat" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSMSBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B6B4B4"
+        android:text="BACK"
+        android:textColor="#020202"
+        android:textSize="24sp"
+        app:backgroundTint="@null" />
+</LinearLayout>
